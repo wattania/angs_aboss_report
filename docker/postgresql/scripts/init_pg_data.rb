@@ -69,8 +69,6 @@ def run_cmd desc, cmd = nil
     if ret
       ret = true 
     else
-      puts "**"
-      p ret
       ret = false
     end
   else
@@ -92,10 +90,13 @@ def main
     run_cmd "Init Database", (initdb "/pgpass")
   end
 
-  run_cmd "Insert listen address (*)" do 
-    ##listen_addresses = '*'
-    path = "/pgdata/postgresql.conf"
-    File.open(path, 'a') do |f| f << "listen_addresses = '*'\n" end
+  run_cmd "Insert Authen host" do 
+    File.open("/pgdata/pg_hba.conf", 'a') do |f| f << "host all all 0.0.0.0/0 md5\n" end
+    true
+  end
+
+  run_cmd "Insert listen address (*)" do
+    File.open("/pgdata/postgresql.conf", 'a') do |f| f << "listen_addresses = '*'\n" end
     true
   end
 
