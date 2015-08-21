@@ -1,3 +1,4 @@
+require 'optparse'
 require 'etc'
 require 'fileutils'
 require 'pg'
@@ -78,7 +79,7 @@ def run_cmd desc, cmd = nil
   ret
 end
 
-def main
+def intialize_database
   run_cmd "Create .pgpass", "echo '127.0.0.1:5432:*:postgres:#{SUPER_USER_PASSWD}' > ~/.pgpass && chmod 600 ~/.pgpass"
   run_cmd "Set PGDATA" do set_dir_owner PG_DATA_PATH, PG_USER end
 
@@ -116,6 +117,26 @@ def main
 end
 
 if __FILE__ == $0
-  main 
-  puts ": Bye!"
+  options = {}
+  OptionParser.new do |opts|
+    opts.banner = "Usage: [options]"
+
+    opts.on('-i', '--initdb',           'Initial new database'){ |v| options[:init_db] = v }
+    opts.on('-r', '--runpg',            'Run Bash'){ |v| options[:run_pg] = v }
+
+    #opts.on('-n', '--sourcename NAME',  'Source name') { |v| options[:source_name] = v }
+    #opts.on('-h', '--sourcehost HOST',  'Source host') { |v| options[:source_host] = v }
+    #opts.on('-p', '--sourceport PORT',  'Source port') { |v| options[:source_port] = v }
+
+  end.parse!
+  
+  if options[:init_db]
+    intialize_database
+
+  elsif options[:run_pg]
+    exec run_pg_user "#{PG_BIN}/postgres -D #{PG_DATA_PATH}"
+
+  else
+    exec "bash"
+  end
 end

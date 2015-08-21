@@ -3,4 +3,4 @@ docker run --rm \
 -v $(pwd)/scripts/entrypoint.rb:/entry \
 --volumes-from angs_aboss_report_pg_data \
 docker.io/angstroms/angs_aboss_report:pg \
-/entry --initdb
+/entry --runpg

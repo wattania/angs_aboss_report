@@ -14,3 +14,6 @@ ENV PATH /usr/pgsql-9.4/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/s
 
 RUN gem install --no-rdoc --no-ri popen4 \
 && gem install --no-rdoc --no-ri pg
+
+ENTRYPOINT ["/usr/bin/ruby"]
+CMD ["/entry"]
