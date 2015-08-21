@@ -30,8 +30,6 @@ RUN gem install bundler \
 && gem install --no-rdoc --no-ri rails -v '4.2.3' \
 && gem install --no-rdoc --no-ri torquebox -v '4.0.0.beta1'
 
-ENV TORQUEBOX_HOME /jruby-9.0.0.0/lib/ruby/gems/shared/gems/torquebox-server-3.1.2-java
-ENV JBOSS_HOME /jruby-9.0.0.0/lib/ruby/gems/shared/gems/torquebox-server-3.1.2-java/jboss
 ENV JRUBY_HOME /jruby-9.0.0.0
 
 RUN cd /tmp \
