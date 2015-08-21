@@ -56,6 +56,10 @@ def create_user user
   "#{PG_BIN}/createuser --host=127.0.0.1 --port=5432 --username=postgres --encrypted --no-password #{user}"
 end
 
+def set_user_password username, passwd
+  "#{PG_BIN}/psql --host=127.0.0.1 --port=5432  --username=postgres --no-password --command=\"ALTER USER #{username} PASSWORD '#{passwd}';\""
+end
+
 def create_db db_name, owner
   "#{PG_BIN}/createdb --host=127.0.0.1 --port=5432 --username=postgres --encoding=UTF-8 --owner=#{owner} --no-password #{db_name}"
 end
@@ -63,7 +67,7 @@ end
 def run_cmd desc, cmd = nil
   ret = true
   puts 
-  puts "-------------------------------------------------------------"
+  puts "==========================================================================="
   puts ":: #{desc} >>> #{cmd}"
   if block_given?
     ret = yield
@@ -75,7 +79,8 @@ def run_cmd desc, cmd = nil
   else
     ret = system cmd
   end
-  puts "   -> #{ret}"
+  puts "-> #{ret}"
+  puts
   ret
 end
 
@@ -107,10 +112,11 @@ def intialize_database
   puts ": Sleep 2 seconds"
   sleep 2
 
-  run_cmd "Create Role",  (create_user  'angs_aboss_report')
-  run_cmd "Create DB",    (create_db    'angs_aboss_report_prod', 'angs_aboss_report')
-  run_cmd "Create DB",    (create_db    'angs_aboss_report_dev',  'angs_aboss_report')
-  run_cmd "Create DB",    (create_db    'angs_aboss_report_test', 'angs_aboss_report')
+  run_cmd "Create Role",        (create_user  'angs_aboss_report')
+  run_cmd "Set Role Password",  (set_user_password 'angs_aboss_report', 'angs_aboss_report')
+  run_cmd "Create DB",          (create_db    'angs_aboss_report_prod', 'angs_aboss_report')
+  run_cmd "Create DB",          (create_db    'angs_aboss_report_dev',  'angs_aboss_report')
+  run_cmd "Create DB",          (create_db    'angs_aboss_report_test', 'angs_aboss_report')
 
   run_cmd "Stop PG Server", (pg_ctl "stop")
 
@@ -137,6 +143,6 @@ if __FILE__ == $0
     exec run_pg_user "#{PG_BIN}/postgres -D #{PG_DATA_PATH}"
 
   else
-    exec "bash"
+    exec "/usr/bin/bash"
   end
 end

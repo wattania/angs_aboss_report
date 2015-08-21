@@ -4,12 +4,16 @@
 # gem 'activerecord-jdbcpostgresql-adapter'
 #
 default: &default
+  host: pg_server
   adapter: postgresql
   encoding: unicode
+  username: angs_aboss_report
+  port: 5432
+  password: angs_aboss_report
 
 development:
   <<: *default
-  database: appserver_development
+  database: angs_aboss_report_dev
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -40,7 +44,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: appserver_test
+  database: angs_aboss_report_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -63,6 +67,5 @@ test:
 #
 production:
   <<: *default
-  database: appserver_production
-  username: appserver
+  database: angs_aboss_report_prod
   password: <%= ENV['APPSERVER_DATABASE_PASSWORD'] %>
