@@ -1,3 +1,6 @@
+DOCKER_USER  = "angstroms"
+PROJECT_NAME ="angs_aboss_report"
+
 def get_tag a_path
   
 end
@@ -13,13 +16,11 @@ def main
   ]
 
   system cmds.join ' && '
+  puts "-------------"
+ 
+  cmd = "docker build -t docker.io/#{DOCKER_USER}/#{PROJECT_NAME} -f #{current_dir}/Dockerfile #{current_dir}"
+  puts cmd
+  puts " --> #{system cmd}"
 end
 
 main if __FILE__ == $0
-
-=begin
-cd docker/appserver \
-&& sh build_docker.sh \
-&& cd ../.. \
-&& docker build -t docker.io/angstroms/angs_aboss_report .
-=end
