@@ -1,3 +1,6 @@
+def get_tag a_path
+  
+end
 
 def main
   current_dir = Dir.pwd
