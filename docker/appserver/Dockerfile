@@ -18,6 +18,9 @@ RUN wget --header "Cookie: oraclelicense=accept-securebackup-cookie" http://down
 COPY UnlimitedJCEPolicy/local_policy.jar /usr/java/latest/lib/security/local_policy.jar
 COPY UnlimitedJCEPolicy/US_export_policy.jar /usr/java/latest/lib/security/US_export_policy.jar
 
+COPY UnlimitedJCEPolicy/local_policy.jar /usr/java/jdk1.8.0_51/jre/lib/security/local_policy.jar
+COPY UnlimitedJCEPolicy/US_export_policy.jar /usr/java/jdk1.8.0_51/jre/lib/security/US_export_policy.jar
+
 RUN wget https://s3.amazonaws.com/jruby.org/downloads/1.7.19/jruby-bin-1.7.19.tar.gz \
 && tar -xf /jruby-bin-1.7.19.tar.gz \
 && rm -rf /jruby-bin-1.7.19.tar.gz
@@ -27,9 +30,9 @@ RUN ln -s /jruby-1.7.19/bin/jruby /jruby-1.7.19/bin/ruby
 ENV PATH /jruby-1.7.19/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 RUN gem install bundler \
-&& gem install --no-rdoc --no-ri rails -v '4.2.3' \
-&& gem install --no-rdoc --no-ri torquebox -v '3.1.2' \
-&& gem install --no-rdoc --no-ri torquebox-server -v '3.1.2' \
+&& gem install --no-rdoc --no-ri rails -v '4.2.3' --platform jruby \
+&& gem install --no-rdoc --no-ri torquebox -v '3.1.2' --platform jruby \
+&& gem install --no-rdoc --no-ri torquebox-server -v '3.1.2' --platform jruby
 
 ENV JRUBY_HOME /jruby-1.7.19
 
