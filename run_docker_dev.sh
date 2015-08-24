@@ -1,5 +1,5 @@
 docker run --rm -it \
--p 8080:8080 \
+-p 3000:3000 \
 -v $(pwd)/appserver:/appserver \
 --link angs_aboss_report_postgresql:pg_server \
 --privileged \
