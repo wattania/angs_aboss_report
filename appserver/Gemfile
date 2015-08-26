@@ -42,4 +42,11 @@ gem 'torquebox-messaging', '3.1.2', platforms: [:jruby]
 gem 'torquebox-server', '3.1.2', platforms: [:jruby]
 gem 'uuid'
 gem 'omniauth-oauth2'
-gem 'doorkeeper'
+
+=begin
+# fix for ruby 1.9.x syntax
+SyntaxError: /appserver/vendor/gems/doorkeeper-3.0.0/lib/doorkeeper/rails/helpers.rb:14: syntax error, unexpected tLABEL
+      def doorkeeper_unauthorized_render_options(error: nil)
+                                                       ^
+=end
+gem 'doorkeeper', path: "/appserver/vendor/gems/doorkeeper-3.0.0" 

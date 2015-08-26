@@ -1,3 +1,9 @@
+PATH
+  remote: vendor/gems/doorkeeper-3.0.0
+  specs:
+    doorkeeper (3.0.0)
+      railties (>= 3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -51,8 +57,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
-    doorkeeper (3.0.0)
-      railties (>= 3.2)
     edn (1.0.0)
       parslet (~> 1.4.0)
     erubis (2.7.0)
@@ -206,7 +210,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-jdbcpostgresql-adapter
   coffee-rails (~> 4.1.0)
-  doorkeeper
+  doorkeeper!
   jbuilder (~> 2.0)
   jquery-rails
   omniauth-oauth2
