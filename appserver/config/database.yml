@@ -9,7 +9,7 @@ development:
   encoding: unicode
   username: angs_aboss_report
   port: 5432
-  password: angs_aboss_report1
+  password: angs_aboss_report
   database: angs_aboss_report_dev
 
   # Connect on a TCP socket. Omitted by default since the client uses a
