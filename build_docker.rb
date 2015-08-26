@@ -1,8 +1,12 @@
 DOCKER_USER  = "angstroms"
 PROJECT_NAME ="angs_aboss_report"
 
-def get_tag a_path
-  
+def docker_path
+ "docker.io/#{DOCKER_USER}/#{PROJECT_NAME}" 
+end
+
+def tag
+ "#{docker_path}:latest"
 end
 
 def main
@@ -18,9 +22,11 @@ def main
   system cmds.join ' && '
   puts "-------------"
  
-  cmd = "docker build -t docker.io/#{DOCKER_USER}/#{PROJECT_NAME} -f #{current_dir}/Dockerfile #{current_dir}"
+  cmd = "docker build -t #{tag} -f #{current_dir}/Dockerfile #{current_dir}"
   puts cmd
   puts " --> #{system cmd}"
+  
+  #system "docker push #{tag}"
 end
 
 main if __FILE__ == $0
