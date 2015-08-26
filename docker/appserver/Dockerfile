@@ -2,7 +2,7 @@ FROM centos:7.1.1503
 MAINTAINER Wattana Inthaphong <wattaint@gmail.com>
 # enable centos plus repo and install epel repo
 RUN yum update -y \
-&& rpm -iUvh http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm \
+&& yum install -y epel-release \
 && yum install -y git wget tar mlocate vim which bzip2 zip unzip \
 && yum clean all
 
@@ -25,7 +25,7 @@ RUN wget https://s3.amazonaws.com/jruby.org/downloads/1.7.19/jruby-bin-1.7.19.ta
 && tar -xf /jruby-bin-1.7.19.tar.gz \
 && rm -rf /jruby-bin-1.7.19.tar.gz
 
-RUN ln -s /jruby-1.7.19/bin/jruby /jruby-1.7.19/bin/ruby
+#RUN ln -s /jruby-1.7.19/bin/jruby /jruby-1.7.19/bin/ruby
 
 ENV PATH /jruby-1.7.19/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
@@ -36,7 +36,7 @@ RUN gem install bundler \
 
 ENV JRUBY_HOME /jruby-1.7.19
 
-RUN cd /tmp \
-&& rails new jreport --database=postgresql \
-&& cd / \
-&& rm -rf /tmp/jreport
+#RUN cd /tmp \
+#&& rails new jreport --database=postgresql \
+#&& cd / \
+#&& rm -rf /tmp/jreport
