@@ -42,3 +42,4 @@ gem 'torquebox-messaging', '3.1.2', platforms: [:jruby]
 gem 'torquebox-server', '3.1.2', platforms: [:jruby]
 gem 'uuid'
 gem 'omniauth-oauth2'
+gem 'doorkeeper'
