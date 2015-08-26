@@ -2,7 +2,7 @@ FROM centos:7.1.1503
 MAINTAINER Wattana Inthaphong <wattaint@gmail.com>
 
 RUN yum update -y \
-&& rpm -iUvh http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm \
+&& yum install -y epel-release \
 && rpm -iUvh http://yum.postgresql.org/9.4/redhat/rhel-6-x86_64/pgdg-centos94-9.4-1.noarch.rpm \
 && yum install -y postgresql94 postgresql94-devel postgresql94-libs postgresql94-server \
 || yum clean all
