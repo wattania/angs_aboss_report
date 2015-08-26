@@ -30,7 +30,7 @@ RUN ln -s /jruby-1.7.19/bin/jruby /jruby-1.7.19/bin/ruby
 ENV PATH /jruby-1.7.19/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 RUN gem install bundler \
-&& gem install --no-rdoc --no-ri rails -v '4.2.3' --platform jruby \
+&& gem install --no-rdoc --no-ri rails -v '3.2.22' --platform jruby \
 && gem install --no-rdoc --no-ri torquebox -v '3.1.2' --platform jruby \
 && gem install --no-rdoc --no-ri torquebox-server -v '3.1.2' --platform jruby
 
