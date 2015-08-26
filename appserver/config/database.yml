@@ -4,11 +4,12 @@
 # gem 'activerecord-jdbcpostgresql-adapter'
 
 development:
+  host: pg_server
   adapter: postgresql
   encoding: unicode
-  database: appserver_development
-  username: appserver
-  password:
+  username: angs_aboss_report
+  port: 5432
+  password: angs_aboss_report
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -29,15 +30,17 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
+  host: pg_server
   adapter: postgresql
   encoding: unicode
-  database: appserver_test
-  username: appserver
-  password:
+  username: angs_aboss_report
+  port: 5432
+  password: angs_aboss_report
 
 production:
+  host: pg_server
   adapter: postgresql
   encoding: unicode
-  database: appserver_production
-  username: appserver
-  password:
+  username: angs_aboss_report
+  port: 5432
+  password: angs_aboss_report
