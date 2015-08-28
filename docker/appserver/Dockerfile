@@ -22,9 +22,10 @@ RUN yum update -y \
 
 ENV JRUBY_VERSION 1.7.22
 ENV TORQUEBOX_VERSION 3.1.2
-ENV RAILS_VERSION 3.2.22
-ENV JDK_VERSION 7u79
-ENV JDK_RELEASE $JDK_VERSION-b15
+#ENV JDK_VERSION 7u79
+#ENV JDK_RELEASE $JDK_VERSION-b15
+ENV JDK_VERSION 8u51
+ENV JDK_RELEASE $JDK_VERSION-b16
 ENV JRUBY_OPTS "-J-Xmx2g -J-Xms1g -Xcompile.invokedynamics=false"
 ENV PATH $PATH:/jruby-$JRUBY_VERSION/bin
 ENV JRUBY_HOME /jruby-$JRUBY_VERSION
@@ -39,9 +40,9 @@ RUN wget https://s3.amazonaws.com/jruby.org/downloads/$JRUBY_VERSION/jruby-bin-$
 && tar -xf /jruby-bin-$JRUBY_VERSION.tar.gz \
 && rm -rf /jruby-bin-$JRUBY_VERSION.tar.gz \
 && gem install bundler \
-&& gem install --no-rdoc --no-ri rails -v '$RAILS_VERSION' \
-&& gem install --no-rdoc --no-ri torquebox -v '$TORQUEBOX_VERSION', platform: :jruby \
-&& gem install --no-rdoc --no-ri torquebox-server -v '$TORQUEBOX_VERSION', platform: :jruby \
+&& gem install --no-rdoc --no-ri rails -v '3.2.22' \
+&& gem install --no-rdoc --no-ri torquebox -v '3.1.2', --platform jruby \
+&& gem install --no-rdoc --no-ri torquebox-server -v '3.1.2', --platform jruby \
 && cd /tmp \
 && rails new jreport --database=postgresql \
 && cd / \
