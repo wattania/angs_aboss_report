@@ -1,10 +1,15 @@
 Appserver::Application.routes.draw do
   #use_doorkeeper
-  root to: redirect('/auth/doorkeeper')
-  get '/auth/:provider/callback' => 'application#authentication_callback'
+  #root to: redirect('/auth/doorkeeper')
+  root to: 'webapp::home#index'
+  get '/auth/:provider/callback' => 'webapp_base#authentication_callback'
 
   namespace :api do 
     resources :report
+  end
+
+  namespace :webapp do
+    resources :home
   end
 
   # The priority is based upon order of creation:

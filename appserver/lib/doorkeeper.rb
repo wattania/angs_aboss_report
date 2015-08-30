@@ -5,8 +5,8 @@ module OmniAuth
     class Doorkeeper < OmniAuth::Strategies::OAuth2
       option :name, 'doorkeeper'
       option :client_options, {
-        site:          "http://#{ENV['AUTHORIZE_SERVER']}",
-        authorize_url: "http://#{ENV['AUTHORIZE_SERVER']}/oauth/authorize"
+        site:          "#{ENV['AUTHORIZE_SERVER']}",
+        authorize_url: "#{ENV['AUTHORIZE_SERVER']}/oauth/authorize"
       }
 
       uid {

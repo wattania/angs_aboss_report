@@ -86,12 +86,34 @@ def main client, auth_code = nil
   token
 end
 
+def call_api a_token 
+  client = OAuth2::Client.new(CLIENT_ID, CLIENT_SECRET, :site => 'http://10.211.55.15:3005')
+  puts "-- call_api -> "
+  access_token = a_token.token
+  puts
+  token = store_token a_token.refresh! if a_token.expired?
+  stored_token = get_token
+  api_token = OAuth2::AccessToken.new client, access_token, stored_token
+  yield api_token
+  token
+end
+
 if __FILE__ == $0
   puts "------------------------------"
   client = OAuth2::Client.new(CLIENT_ID, CLIENT_SECRET, :site => AUTH_HOST)
   token = main client, ARGV[0]
   if token 
-    p token.get('/me').parsed
+    puts
+    #p token.get('/me').parsed
+
+    call_api token do |api_token|
+      puts "-x-"
+      p api_token.get('/api/report').parsed
+
+    end
+
+    #puts "--- call api ---"
+    #token = store_token client.auth_code.get_token(auth_code, :redirect_uri => CALLBACK_URL)
   end
   puts
 end
