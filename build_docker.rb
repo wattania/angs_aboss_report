@@ -31,10 +31,10 @@ def main param
   when 'copy_gemfile_lock'
     cmd = [
       "docker run --rm",
-      "-v #{current_dir}:/backup"
-      "--privileged"
+      "-v #{current_dir}:/backup",
+      "--privileged",
       docker_path,
-      "copy -f /tmp/Gemfile.lock /backup/appserver/"
+      "cp -f /tmp/Gemfile.lock /backup/appserver/"
     ].join ' '
     puts cmd
     puts " --> #{system cmd}"
