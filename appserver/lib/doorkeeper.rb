@@ -1,4 +1,3 @@
-=begin
 require 'omniauth-oauth2'
 
 module OmniAuth
@@ -6,8 +5,8 @@ module OmniAuth
     class Doorkeeper < OmniAuth::Strategies::OAuth2
       option :name, 'doorkeeper'
       option :client_options, {
-        site:          "http://#{ENV['AUTH_SERVER_NAME']}:#{ENV['AUTH_SERVER_PORT']}",
-        authorize_url: "http://#{ENV['AUTH_SERVER_NAME']}:#{ENV['AUTH_SERVER_PORT']}/oauth/authorize"
+        site:          "http://#{ENV['AUTHORIZE_SERVER']}",
+        authorize_url: "http://#{ENV['AUTHORIZE_SERVER']}/oauth/authorize"
       }
 
       uid {
@@ -30,4 +29,3 @@ module OmniAuth
     end
   end
 end
-=end

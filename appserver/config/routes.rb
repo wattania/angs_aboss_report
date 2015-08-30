@@ -1,7 +1,6 @@
 Appserver::Application.routes.draw do
   #use_doorkeeper
   root to: redirect('/auth/doorkeeper')
-
   get '/auth/:provider/callback' => 'application#authentication_callback'
 
   namespace :api do 
