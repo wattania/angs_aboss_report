@@ -9,7 +9,7 @@ def tag
  "#{docker_path}:latest"
 end
 
-def main
+def main param
   current_dir = Dir.pwd
 
   cmds = [
@@ -25,8 +25,22 @@ def main
   cmd = "docker build -t #{tag} -f #{current_dir}/Dockerfile #{current_dir}"
   puts cmd
   puts " --> #{system cmd}"
-  
+  puts " -------------- "
   #system "docker push #{tag}"
+  case param
+  when 'copy_gemfile_lock'
+    cmd = [
+      "docker run --rm",
+      "-v #{current_dir}:/backup"
+      "--privileged"
+      docker_path,
+      "copy -f /tmp/Gemfile.lock /backup/appserver/"
+    ].join ' '
+    puts cmd
+    puts " --> #{system cmd}"
+  end
 end
 
-main if __FILE__ == $0
+if __FILE__ == $0
+  main ARGV[0]
+end
