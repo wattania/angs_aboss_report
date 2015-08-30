@@ -44,7 +44,8 @@ gem 'torquebox', '3.1.2', platforms: [:jruby]
 gem 'torquebox-messaging', '3.1.2', platforms: [:jruby]
 gem 'torquebox-server', '3.1.2', platforms: [:jruby]
 gem 'uuid'
-gem 'omniauth-oauth2'
+#gem 'omniauth-oauth2'
+gem 'faraday'
 
 =begin
 # fix for ruby 1.9.x syntax
@@ -53,4 +54,4 @@ SyntaxError: /appserver/vendor/gems/doorkeeper-3.0.0/lib/doorkeeper/rails/helper
                                                        ^
 =end
 #gem 'doorkeeper', path: "/gems/doorkeeper-3.0.0" 
-gem 'doorkeeper', '2.2.2'
+#gem 'doorkeeper', '2.2.2'
